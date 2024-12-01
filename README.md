@@ -19,7 +19,7 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
 
 ## Circuit Diagram of Hardware Terminations
 
-![Circuit Diagram](assets/circuit-diagram.jpg "Circuit Diagram")
+![Circuit Diagram](assets/circuit-diagram.jpeg "Circuit Diagram")
 
 
 
