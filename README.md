@@ -1,4 +1,7 @@
-# Gungnir
+<p align="center">
+  <img src="assets/gungir-title.png" alt="Gungnir" width="300">
+</p>
+
 
 **Gungnir** is an open-source control system designed to manage city street lights efficiently and cost-effectively. Built with simplicity, scalability, and interoperability in mind, Gungnir aims to provide municipalities with a reliable, taxpayer-friendly solution for smart lighting control.
 
