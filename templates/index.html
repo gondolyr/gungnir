@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <title>Stýring RVK</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="{{ url_for('static', filename='favicon.png') }}" rel="shortcut icon" />
+    <link href="{{ url_for('static', filename='favicon-large.png') }}" rel="apple-touch-icon-precomposed" />
+</head>
+<body>
+    <h1>Stýring Götuljósa Reykjavíkur</h1>
+    {% for hverfi, devices in hverfi_dict.items() %}
+    <div class="hverfi-section">
+        <button class="collapsible" id="{{ hverfi }}">{{ hverfi }}</button>
+        <div class="hverfi-content">
+            {% for device in devices %}
+            <div class="device">
+                <button class="device-collapsible" id="{{ device['id'] }}">
+                    <strong>ID:</strong> {{ device['id'] }} - [{{ device['outputstate'] }}]
+                    {% if device['astroman'] == 'ASTRO' %}
+                    - Mode: ASTRO
+                    {% elif device['astroman'] == 'MANUAL' %}
+                    - Mode: MANUAL
+                    {% endif %}
+                </button>
+                <div class="device-content">
+                    {% if device['astroman'] == 'MANUAL' %}
+                    <form action="{{ url_for('update_uxstate') }}" method="post">
+                        <input type="hidden" name="device_id" value="{{ device['id'] }}">
+                        <button type="submit" name="uxstate" value="ON">ON</button>
+                        <button type="submit" name="uxstate" value="OFF">OFF</button>
+                    </form>
+                    {% endif %}
+                    <div class="device-details">
+                        <p><em>Stýring:</em></p>
+                        <form action="{{ url_for('update_astroman') }}" method="post">
+                            <input type="hidden" name="device_id" value="{{ device['id'] }}">
+                            <button type="submit" name="astroman" value="ASTRO">ASTRO</button>
+                            <button type="submit" name="astroman" value="MANUAL">MANUAL</button>
+                        </form>
+                        <p><em>Frekari Upplýsingar:</em></p>
+                        <ul>
+                            <li>dreifistöð: {{ device['ds'] }} (<a href="https://lukor.or.is/lukor/gotuljosakort.html?dnr={{ device['ds'] }}" target="_blank">lukor Götuljósakort</a>)</li>
+                            <li>heimtaugaskápur: {{ device['hs'] }}</li>
+                            <li>heimilisfang: {{ device['heimilisfang'] }}</li>
+                            <li>hnit: {{ device['lat'] }}, {{ device['lon'] }} (<a href="https://www.google.com/maps/place/{{ device['lat'] }},{{ device['lon'] }}/@{{ device['lat'] }},{{ device['lon'] }},18z/data=!3m1!1e3" target="_blank">google maps</a>)</li>
+                            <li>ip tala: <a href="http://{{ device['tsip'] }}" target="_blank">{{ device['tsip'] }}</a></li>
+                            <li>símanúmer: {{ device['telno'] }}</li>
+                            <li>athugasemd: {{ device['comment'] }}</li>
+                            <li>output: {{ device['outputstate'] }}</li>
+                            <li>input: {{ device['inputstate'] }}</li>
+                            <li>staða skáps: {{ device['localremote'] }}</li>
+                            <li>staða sólúrs: {{ device['astrostate'] }}</li>
+                            <li>sólúr síðast: {{ device['lasastroOP'] }} @ {{ device['lastastrotime']|datetimeformat }}</li>
+                            <li>sólúr næst: {{ device['nextastroOP'] }} @ {{ device['nextastrotime']|datetimeformat }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Tables and Dash Links with prompt -->
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="#" onclick="if(confirm('This area is for admin access only')) { window.location.href='http://100.105.197.17:5052/'; }">tables</a> | 
+        <a href="#" onclick="if(confirm('This area is for admin access only')) { window.location.href='http://100.115.213.3:3000/'; }">dash</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
