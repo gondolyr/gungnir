@@ -21,8 +21,6 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
 
 ![Circuit Diagram](assets/circuit-diagram.jpeg "Circuit Diagram")
 
-
-
 ---
 
 ## Development Phases
@@ -33,11 +31,26 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
   - **Real-Time State Awareness**: Gungnir monitors device states:
     - States are reflected in an external-facing webUI.
     - Indicates locally overridden manual switches.
+
+Interacive map of System:
+
+[![map](assets/map.png "Installation Map")](https://reykjavik.gatnalysing.is/)
+
+Basic WebUI Screenshot:
+
+![WebUI](assets/webui.png "Cabinet in the Wild")
   - **Remote Override**: Operators can manually control the lights remotely as needed.
   - **Load Staggering**: Prevents simultaneous activation to reduce strain on the power grid.
   - **Hardware Installation**: Installation of a distributed system
-![Hardware Installation](assets/wiring.jpeg "Hardware Installation")
+
+Hardware Installation:
+
+![Hardware Installation](assets/cabwiring.png "Hardware Installation")
+
+Cabinet in the Wild
+
 ![Cabinet in the Wild](assets/cabinet.jpeg "Cabinet in the Wild")
+
 
 ---
 
