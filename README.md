@@ -87,7 +87,7 @@ We welcome contributions from the community to help improve Gungnir. Whether it'
 ---
 
 ## License
-Gungnir is licensed under the [GNU Affero General Public License (AGPL) v3](./LICENSE), ensuring that any modifications or enhancements made to the software benefit the open-source community.
+Gungnir is licensed under the [GNU Affero General Public License (AGPL) v3](./LICENSE.md), ensuring that any modifications or enhancements made to the software benefit the open-source community.
 
 ---
 
