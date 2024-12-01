@@ -59,7 +59,7 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
 ---
 
 - [x] **Phase 3: Open-Source Release** *(Completed)*  
-  Gungnir is publicly available under the [AGPL v3 License](./LICENSE) to foster community contributions and transparency. New features are added based on user requests.
+  Gungnir is publicly available under the [AGPL v3 License](./LICENSE.md) to foster community contributions and transparency. New features are added based on user requests.
 
 ---
 
