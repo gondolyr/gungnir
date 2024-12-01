@@ -32,8 +32,29 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
 ---
 
 - [x] **Phase 2: Interoperability** *(Completed)*  
-  To extend its functionality, Gungnir provides:
-  - **API Support**: API for third-party applications to interact with the system.
+  To extend its functionality, Gungnir provides:  
+  - **API Support**: Enables third-party applications to interact with the system.
+  - **API Quick Start**:  
+
+    1. **Set Device to MANUAL Mode**  
+       ```bash
+       curl -X POST -H "Content-Type: application/json" \
+            -H "CF-Access-Client-Id: your_id" \
+            -H "CF-Access-Client-Secret: your_secret" \
+            -d '{"astroman": "MANUAL"}' \
+            https://your_server/devices/{identifier}/astroman
+       ```
+
+    2. **Turn Device OFF**  
+       ```bash
+       curl -X POST -H "Content-Type: application/json" \
+            -H "CF-Access-Client-Id: your_id" \
+            -H "CF-Access-Client-Secret: your_secret" \
+            -d '{"state": "OFF"}' \
+            https://your_server/devices/{identifier}/state
+       ```
+
+    For a full list of endpoints and instructions, see [api-guide.md](./api-guide.md).
 
 ---
 
