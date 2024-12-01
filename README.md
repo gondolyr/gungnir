@@ -81,18 +81,13 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
 
 ---
 
-## Contributing
-We welcome contributions from the community to help improve Gungnir. Whether it's fixing a bug, suggesting a feature, or improving documentation, your input is valued. Please read our [contribution guidelines](CONTRIBUTING.md) for more details.
+## Contributing & Contact
+Gungnir is still a work in progress, and I’d appreciate help setting up a contribution process. If you have ideas or want to get involved, feel free to reach out: [David Berman](mailto:david@berman.is).
 
 ---
 
 ## License
 Gungnir is licensed under the [GNU Affero General Public License (AGPL) v3](./LICENSE.md), ensuring that any modifications or enhancements made to the software benefit the open-source community.
-
----
-
-## Contact
-For questions, feature requests, or support, feel free to contact [David Berman](mailto:david@berman.is).
 
 ---
 
