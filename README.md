@@ -13,13 +13,13 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
 
 ---
 
-## System Diagram of Gungnir
+### System Diagram of Gungnir
 
 ![Gungnir Diagram](assets/gungnir-diagram.jpg "System Diagram of Gungnir")
 
-## Circuit Diagram of Hardware Terminations
+### Circuit Diagram of Hardware Terminations
 
-![Circuit Diagram](assets/circuit-diagram.jpeg "Circuit Diagram")
+<img src="assets/circuit-diagram.jpeg" alt="Circuit Diagram" width="400">
 
 ---
 
