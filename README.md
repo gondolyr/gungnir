@@ -3,7 +3,7 @@
 </p>
 
 
-**Gungnir** is an open-source control system designed to manage city street lights efficiently and cost-effectively. Built with simplicity, scalability, and interoperability in mind, Gungnir aims to provide municipalities with a reliable, taxpayer-friendly solution for smart lighting control.
+**Gungnir** is an open-source proof-of-concept system designed to manage city streetlights efficiently and cost-effectively. Currently, it controls approximately 10% of Reykjavik's streetlights, including the downtown district, Viðey Island, and the west side of the old town. Built with simplicity, scalability, and interoperability in mind, Gungnir demonstrates how smaller municipalities can adopt a forward-thinking, taxpayer-friendly approach to lighting control using free and open-source tools.
 
 ## Project Goals
 The core philosophy behind Gungnir is to develop a straightforward yet powerful system to minimize expenditure while maximizing functionality for citywide street lighting. This is achieved by focusing on the following principles:
