@@ -13,7 +13,14 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
 
 ---
 
+## System Diagram of Gungnir
+
 ![Gungnir Diagram](assets/gungnir-diagram.jpg "System Diagram of Gungnir")
+
+## Circuit Diagram of Hardware Terminations
+
+![Circuit Diagram](assets/circuit-diagram.jpg "Circuit Diagram")
+
 
 
 ---
@@ -28,6 +35,9 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
     - Indicates locally overridden manual switches.
   - **Remote Override**: Operators can manually control the lights remotely as needed.
   - **Load Staggering**: Prevents simultaneous activation to reduce strain on the power grid.
+  - **Hardware Installation**: Installation of a distributed system
+![Hardware Installation](assets/wiring.jpeg "Hardware Installation")
+![Cabinet in the Wild](assets/cabinet.jpeg "Cabinet in the Wild")
 
 ---
 
