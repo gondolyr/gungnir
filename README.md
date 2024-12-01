@@ -39,17 +39,17 @@ Gungnir is publicly available under the [AGPL v3 License](./LICENSE) to foster c
 
 ### **Phase 4: Feature Expansion** *(In Progress)*
 The current focus is on integrating requested features:
-- **Light Sensors**: Adding daylight sensors to dynamically adjust lighting.
-- **Standalone Functionality**: Scheduled on/off behavior for cases of internet outages.
-- **Coordinator Role**: Introducing a feature to streamline and optimize system management.
+- **Light Sensors**: Adding daylight sensors to offset on/off times based on ambient light and weather.
+- **Standalone Functionality**: Offline process to control lights on/off based on a pre-set schedule at the router level during internet outages.
+- **Coordinator Script**: Startup Management / Process Monitoring / Failure Notification
 
 ---
 
 ### **Phase 5: Impending Improvements** *(In Progress)*
 Ongoing development is dedicated to enhancing the system’s scalability and robustness:
-- **Database and Framework Improvements**: Transitioning from SQLite/Flask to PostgreSQL/production-ready frameworks.
-- **Redundancy**: Implementing failover servers for improved uptime during maintenance or outages.
-- **Containerization**: Packaging the system for easy deployment using Docker or similar tools.
+- **Database and Framework Improvements**: Transitioning from SQLite/Flask to PostgreSQL/Gunicorn
+- **Redundancy**: failover servers to ensure uptime during maintenance or outages.
+- **Containerization**: Packaging full system deployment planned in future updates.
 - **TALQ Compliance**: Aligning the system with international standards for smart city infrastructure.
 - **Enhanced Documentation**: Improving guides and references for developers and administrators.
 
@@ -66,7 +66,7 @@ Gungnir is licensed under the [GNU Affero General Public License (AGPL) v3](./LI
 ---
 
 ## Contact
-For questions, feature requests, or support, feel free to contact [David Berman](mailto:david.berman@example.com).
+For questions, feature requests, or support, feel free to contact [David Berman](mailto:david@berman.is).
 
 ---
 
