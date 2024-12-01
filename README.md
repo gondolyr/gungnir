@@ -23,7 +23,7 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
 - [x] **Phase 1: Simplicity** *(Completed)*  
   The foundation of Gungnir focuses on delivering essential features:
   - **Automated Lighting**: Streetlights turn on/off automatically based on sunset/sunrise calculations.
-  - **Real-Time State Awareness**: Gungnir tracks and records whether lights are on or off.
+  - **Real-Time State Awareness**: Gungnir monitors device states, reflects them in an external-facing webUI, also indicating local overrides
   - **Manual Override**: Operators can manually control the lights as needed.
   - **Load Staggering**: Prevents simultaneous activation to reduce strain on the power grid.
 
