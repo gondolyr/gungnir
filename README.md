@@ -13,11 +13,11 @@ The core philosophy behind Gungnir is to develop a straightforward yet powerful 
 
 ---
 
-### System Diagram of Gungnir
+### System Diagram of Gungnir:
 
 ![Gungnir Diagram](assets/gungnir-diagram.jpg "System Diagram of Gungnir")
 
-### Circuit Diagram of Hardware Terminations
+### Circuit Diagram of Hardware Terminations:
 
 <img src="assets/circuit-diagram.jpeg" alt="Circuit Diagram" width="400">
 
@@ -43,11 +43,11 @@ Basic WebUI Screenshot:
   - **Load Staggering**: Prevents simultaneous activation to reduce strain on the power grid.
   - **Hardware Installation**: Installation of a distributed system
 
-Hardware Installation:
+### Hardware Installation:
 
 ![Hardware Installation](assets/cabwiring.png "Hardware Installation")
 
-Cabinet in the Wild
+### Cabinet in the Wild:
 
 ![Cabinet in the Wild](assets/cabinet.jpeg "Cabinet in the Wild")
 
