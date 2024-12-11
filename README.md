@@ -115,4 +115,4 @@ Gungnir is licensed under the [GNU Affero General Public License (AGPL) v3](./LI
 ---
 
 ## Acknowledgments
-Gungnir was developed with the goal of providing a modern, efficient solution for streetlight management. Thank you to the open-source community for inspiration and support. Also a big thanks to Jonathan, Leópold, Magnús and Már for your contributions, and Magdalena, Viðar and Fífí for your endless patience!
+Gungnir was developed with the goal of providing a modern, efficient solution for streetlight management. Thank you to the open-source community for inspiration and support. Also a big thanks to Jonathan, Leópold, Magnús, Sverrir and Már for your contributions, and Magdalena, Viðar and Fífí for your endless patience!
