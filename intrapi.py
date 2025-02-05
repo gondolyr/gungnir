@@ -1,6 +1,6 @@
 # intrapi.py
 
-from flask import Flask, request, abort, Response, make_response
+from flask import Flask, request, abort, Response
 import sqlite3
 import subprocess
 import json
