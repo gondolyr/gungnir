@@ -72,12 +72,17 @@ def check_pin_state(device_info, var):
     pin = device_info['input_pin'] if var == 'inputstate' else device_info['output_pin']
 
     # Construct the URL with plain-text credentials in the query string
-    url = f"http://{ip}/cgi-bin/io_value?username={USERNAME}&password={PASSWORD}&pin={pin}"
+    url = f"http://{ip}/cgi-bin/io_value"
+    payload = {
+        "username": USERNAME,
+        "password": PASSWORD,
+        "pin": pin,
+    }
 
     # Send the request
     for attempt in range(RETRY_LIMIT):
         try:
-            response = requests.get(url, timeout=TIMEOUT)
+            response = requests.get(url, params=payload, timeout=TIMEOUT)
 
             if response.status_code == 200:
                 pin_state = response.text.strip()  # Get the pin state from the API response (0 or 1)
