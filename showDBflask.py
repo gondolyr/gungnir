@@ -1,8 +1,9 @@
-from flask import Flask, render_template_string, abort, Response
-import sqlite3
+import argparse
 import csv
 import io
-import argparse
+import sqlite3
+
+from flask import Flask, Response, abort, render_template_string
 
 app = Flask(__name__)
 

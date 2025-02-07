@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-import sqlite3
 import argparse
-import math
 import datetime
-from datetime import timedelta
+import math
+import sqlite3
 import sys
 import time
+from datetime import timedelta
 
 
 def calculate_sunrise_sunset(date, latitude, longitude):

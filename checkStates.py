@@ -1,6 +1,6 @@
 import sqlite3
-import time
 import subprocess
+import time
 
 DB_NAME = "styring.db"  # Database name
 CHECK_INTERVAL = 10  # Minimum interval between API requests in seconds

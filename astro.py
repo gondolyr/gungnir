@@ -1,6 +1,6 @@
 import sqlite3
-import time
 import subprocess
+import time
 
 DB_NAME = "styring.db"  # Database name
 CHECK_INTERVAL = 1  # Interval between processing devices in seconds

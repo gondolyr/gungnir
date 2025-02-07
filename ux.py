@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
-from datetime import datetime
 import subprocess
+from datetime import datetime
+
+from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
 

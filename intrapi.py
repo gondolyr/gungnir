@@ -1,10 +1,11 @@
 # intrapi.py
 
-from flask import Flask, request, abort, Response
+import json
 import sqlite3
 import subprocess
-import json
 from functools import wraps
+
+from flask import Flask, Response, abort, request
 
 app = Flask(__name__)
 

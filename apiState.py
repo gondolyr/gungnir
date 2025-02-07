@@ -1,9 +1,10 @@
 import argparse
-import sqlite3
-import requests
 import os
+import sqlite3
 import subprocess
-from dotenv import load_dotenv, get_key
+
+import requests
+from dotenv import get_key, load_dotenv
 
 # Load environment variables
 load_dotenv()
