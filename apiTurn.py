@@ -17,7 +17,7 @@ TIMEOUT = 5  # Timeout for API requests in seconds
 RETRY_LIMIT = 3  # Number of times to retry the API request
 
 # Function to get data from SQLite DB by device ID
-def get_device_info_by_id(device_id):
+def get_device_info_by_id(device_id: str) -> dict[str, str]:
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -33,7 +33,7 @@ def get_device_info_by_id(device_id):
         raise ValueError(f"No device found with id {device_id}")
 
 # Function to get data from SQLite DB by HS number
-def get_device_info_by_hs(hs):
+def get_device_info_by_hs(hs: str) -> dict[str, str]:
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -49,7 +49,7 @@ def get_device_info_by_hs(hs):
         raise ValueError(f"No device found with hs {hs}")
 
 # Function to turn on/off the output
-def turn_output(device_info, state):
+def turn_output(device_info: dict[str, str], state: str) -> dict[str, str]:
     ip = device_info['ip']
     pin = device_info['output_pin']
 
@@ -77,7 +77,7 @@ def turn_output(device_info, state):
     return {"status": "failure", "ip": ip, "pin": pin, "reason": "max retries exceeded"}
 
 # Function to check the pin state (input or output) via API and update the database
-def check_and_update_pin_state(device_info, var):
+def check_and_update_pin_state(device_info: str, var: str) -> None:
     # Construct the URL for checking the pin state
     ip = device_info['ip']
     pin = device_info['input_pin'] if var == 'inputstate' else device_info['output_pin']
@@ -100,7 +100,7 @@ def check_and_update_pin_state(device_info, var):
         print(f"Error communicating with {ip} for {var}: {e}")
 
 # Function to update the database using updateDBcell.py script
-def update_db(device_id, col_to_change, new_value):
+def update_db(device_id: str, col_to_change: str, new_value: str) -> None:
     command = [
         "python3", "updateDBcell.py",
         "--db", DB_NAME,
@@ -115,7 +115,7 @@ def update_db(device_id, col_to_change, new_value):
     print(result.stdout)
 
 # Main function to handle command-line arguments
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Turn device output on or off and verify the state change.")
 
     group = parser.add_mutually_exclusive_group(required=True)

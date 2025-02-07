@@ -6,7 +6,7 @@ DB_NAME = 'styring.db'  # Database name
 CHECK_INTERVAL = 10  # Minimum interval between API requests in seconds
 
 # Function to get all devices from the heimtaugaskapar table
-def get_all_devices():
+def get_all_devices() -> list[str]:
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -19,7 +19,7 @@ def get_all_devices():
     return [device[0] for device in devices]
 
 # Function to call apiState.py for inputstate or outputstate
-def check_state(device_id, var):
+def check_state(device_id: str, var: str) -> None:
     command = [
         "python3", "apiState.py",
         "--id", device_id,
@@ -33,7 +33,7 @@ def check_state(device_id, var):
         print(f"{var} checked for device {device_id}: {result.stdout}")
 
 # Function to compare inputstate and outputstate and update localremote
-def update_localremote(device_id):
+def update_localremote(device_id: str) -> None:
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -60,7 +60,7 @@ def update_localremote(device_id):
     conn.close()
 
 # Main loop that checks both inputstate and outputstate for each device
-def main():
+def main() -> None:
     while True:
         devices = get_all_devices()
 

@@ -56,7 +56,7 @@ th, td {
 """
 
 # Function to connect to your database
-def get_db_connection(db_name):
+def get_db_connection(db_name: str) -> sqlite3.Connection:
     conn = sqlite3.connect(db_name)
     conn.row_factory = sqlite3.Row
     return conn
@@ -64,7 +64,7 @@ def get_db_connection(db_name):
 # Route to display tables and data
 @app.route('/', defaults={'table_name': None})
 @app.route('/<table_name>')
-def show_table(table_name):
+def show_table(table_name: str) -> str:
     conn = get_db_connection(app.config['DB_NAME'])
     cur = conn.cursor()
     
@@ -88,7 +88,7 @@ def show_table(table_name):
 
 # Route to download table as CSV
 @app.route('/download/<table_name>/csv')
-def download_csv(table_name):
+def download_csv(table_name: str) -> Response:
     conn = get_db_connection(app.config['DB_NAME'])
     cur = conn.cursor()
     try:

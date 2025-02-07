@@ -17,7 +17,7 @@ TIMEOUT = 5  # Timeout for API requests in seconds
 RETRY_LIMIT = 3  # Number of times to retry the API request
 
 # Function to get data from SQLite DB by device ID
-def get_device_info_by_id(device_id):
+def get_device_info_by_id(device_id: str) -> dict[str, str]:
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -33,7 +33,7 @@ def get_device_info_by_id(device_id):
         raise ValueError(f"No device found with id {device_id}")
 
 # Function to get data from SQLite DB by HS number
-def get_device_info_by_hs(hs):
+def get_device_info_by_hs(hs: str) -> dict[str, str]:
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -49,7 +49,7 @@ def get_device_info_by_hs(hs):
         raise ValueError(f"No device found with hs {hs}")
 
 # Function to get output or input pin by IP address
-def get_device_info_by_ip(ip):
+def get_device_info_by_ip(ip: str) -> dict[str, str]:
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -65,7 +65,7 @@ def get_device_info_by_ip(ip):
         raise ValueError(f"No device found with IP {ip}")
 
 # Function to check the state of a pin via API (input or output based on --var flag)
-def check_pin_state(device_info, var):
+def check_pin_state(device_info: dict[str, str], var: str) -> str | None:
     ip = device_info['ip']
     
     # Select pin based on --var flag (either input_pin or output_pin)
@@ -92,7 +92,7 @@ def check_pin_state(device_info, var):
     return None
 
 # Function to update the DB using updateDBcell.py script
-def update_db(device_id, col_to_change, new_value):
+def update_db(device_id: str, col_to_change: str, new_value: str) -> None:
     command = [
         "python3", "updateDBcell.py",
         "--db", DB_NAME,
@@ -107,7 +107,7 @@ def update_db(device_id, col_to_change, new_value):
     print(result.stdout)
 
 # Main function to handle command-line arguments
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Check device pin state and update the database.")
 
     # Mutually exclusive arguments for selecting the device

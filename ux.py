@@ -7,14 +7,14 @@ app = Flask(__name__)
 
 DATABASE = 'styring.db'
 
-def get_db_connection():
+def get_db_connection() -> sqlite3.Connection:
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row  # Enable dict-like access to rows
     return conn
 
 # Custom Jinja2 filter to format datetime strings
 @app.template_filter('datetimeformat')
-def datetimeformat(value):
+def datetimeformat(value: str | None) -> str:
     if value:
         try:
             # Parse the datetime string from the database
@@ -29,7 +29,7 @@ def datetimeformat(value):
         return "N/A"
 
 @app.route('/')
-def index():
+def index() -> str:
     conn = get_db_connection()
     devices = conn.execute('SELECT * FROM heimtaugaskapar').fetchall()
     conn.close()
@@ -45,7 +45,7 @@ def index():
     return render_template('index.html', hverfi_dict=hverfi_dict)
 
 @app.route('/update_astroman', methods=['POST'])
-def update_astroman():
+def update_astroman() -> flask.wrappers.Response:
     device_id = request.form['device_id']
     new_mode = request.form['astroman']
     conn = get_db_connection()
@@ -55,7 +55,7 @@ def update_astroman():
     return redirect(url_for('index'))
 
 @app.route('/update_uxstate', methods=['POST'])
-def update_uxstate():
+def update_uxstate() -> flask.wrappers.Response:
     device_id = request.form['device_id']
     new_state = request.form['uxstate']
     conn = get_db_connection()

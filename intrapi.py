@@ -11,13 +11,13 @@ app = Flask(__name__)
 DATABASE = 'styring.db'
 SECRET_FILE = 'secret'
 
-def get_db_connection():
+def get_db_connection() -> sqlite3.Connection:
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row  # Enable dict-like access to rows
     return conn
 
 # Load Id and Secret from the 'secret' file
-def load_credentials():
+def load_credentials() -> dict[str, str]:
     credentials = {}
     with open(SECRET_FILE, 'r') as f:
         for line in f:
@@ -31,7 +31,7 @@ AUTH_ID = credentials.get('Id')
 AUTH_SECRET = credentials.get('Secret')
 
 # Authentication decorator
-def require_auth(func):
+def require_auth(func: collections.abc.Callable) -> Response:
     @wraps(func)
     def wrapper(*args, **kwargs):
         client_id = request.headers.get('CF-Access-Client-Id')
@@ -42,7 +42,7 @@ def require_auth(func):
     return wrapper
 
 # Helper function to get device by id or hs
-def get_device_by_identifier(identifier):
+def get_device_by_identifier(identifier: str) -> dict[str, str] | None:
     conn = get_db_connection()
     cursor = conn.cursor()
 
@@ -68,12 +68,12 @@ def get_device_by_identifier(identifier):
 # New root endpoint that returns the same as '/devices'
 @app.route('/', methods=['GET'])
 @require_auth
-def root():
+def root() -> Response:
     return get_all_devices()
 
 @app.route('/devices', methods=['GET'])
 @require_auth
-def get_all_devices():
+def get_all_devices() -> Response:
     conn = get_db_connection()
     devices = conn.execute('SELECT * FROM heimtaugaskapar').fetchall()
     conn.close()
@@ -83,7 +83,7 @@ def get_all_devices():
 
 @app.route('/devices/<identifier>', methods=['GET'])
 @require_auth
-def get_device(identifier):
+def get_device(identifier: str) -> Response:
     device = get_device_by_identifier(identifier)
     if device:
         response_json = json.dumps(device, ensure_ascii=False)
@@ -93,7 +93,7 @@ def get_device(identifier):
 
 @app.route('/devices/<identifier>/state', methods=['GET', 'POST'])
 @require_auth
-def device_state(identifier):
+def device_state(identifier: str) -> Response:
     device = get_device_by_identifier(identifier)
     if not device:
         abort(404, description="Device not found")
@@ -145,7 +145,7 @@ def device_state(identifier):
 
 @app.route('/devices/<identifier>/astroman', methods=['GET', 'POST'])
 @require_auth
-def device_astroman(identifier):
+def device_astroman(identifier: str) -> Response:
     device = get_device_by_identifier(identifier)
     if not device:
         abort(404, description="Device not found")
@@ -179,7 +179,7 @@ def device_astroman(identifier):
 
 @app.route('/devices/<identifier>/fields/<field_name>', methods=['GET'])
 @require_auth
-def get_device_field(identifier, field_name):
+def get_device_field(identifier: str, field_name: str) -> Response:
     device = get_device_by_identifier(identifier)
     if not device:
         abort(404, description="Device not found")
@@ -196,7 +196,7 @@ def get_device_field(identifier, field_name):
 # Endpoint for nextastro
 @app.route('/devices/<identifier>/nextastro', methods=['GET'])
 @require_auth
-def device_nextastro(identifier):
+def device_nextastro(identifier: str) -> Response:
     device = get_device_by_identifier(identifier)
     if not device:
         abort(404, description="Device not found")
@@ -212,7 +212,7 @@ def device_nextastro(identifier):
 # Endpoint for lastastro
 @app.route('/devices/<identifier>/lastastro', methods=['GET'])
 @require_auth
-def device_lastastro(identifier):
+def device_lastastro(identifier: str) -> Response:
     device = get_device_by_identifier(identifier)
     if not device:
         abort(404, description="Device not found")
@@ -227,31 +227,31 @@ def device_lastastro(identifier):
 
 # Custom error handlers to ensure non-ASCII characters are handled
 @app.errorhandler(400)
-def bad_request(e):
-    response = {'error': str(e)}
+def bad_request(e: Exception) -> Response:
+    response = {'error': str(e: Exception) -> Response}
     response_json = json.dumps(response, ensure_ascii=False)
     return Response(response_json, status=400, content_type='application/json; charset=utf-8')
 
 @app.errorhandler(401)
-def unauthorized(e):
+def unauthorized(e: Exception) -> Response:
     response = {'error': 'Unauthorized access'}
     response_json = json.dumps(response, ensure_ascii=False)
     return Response(response_json, status=401, content_type='application/json; charset=utf-8')
 
 @app.errorhandler(403)
-def forbidden(e):
-    response = {'error': str(e)}
+def forbidden(e: Exception) -> Response:
+    response = {'error': str(e: Exception) -> Response}
     response_json = json.dumps(response, ensure_ascii=False)
     return Response(response_json, status=403, content_type='application/json; charset=utf-8')
 
 @app.errorhandler(404)
-def resource_not_found(e):
-    response = {'error': str(e)}
+def resource_not_found(e: Exception) -> Response:
+    response = {'error': str(e: Exception) -> Response}
     response_json = json.dumps(response, ensure_ascii=False)
     return Response(response_json, status=404, content_type='application/json; charset=utf-8')
 
 @app.errorhandler(500)
-def internal_server_error(e):
+def internal_server_error(e: Exception) -> Response:
     response = {'error': 'Internal server error'}
     response_json = json.dumps(response, ensure_ascii=False)
     return Response(response_json, status=500, content_type='application/json; charset=utf-8')

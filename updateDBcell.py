@@ -2,7 +2,7 @@ import argparse
 import sqlite3
 
 # Function to update a specific cell in the database
-def update_db_cell(db_name, table_name, col_to_change, col_name, col_name_value, new_value):
+def update_db_cell(db_name: str, table_name: str, col_to_change: str, col_name: str, col_name_value: str, new_value: str) -> None:
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
 
@@ -15,7 +15,7 @@ def update_db_cell(db_name, table_name, col_to_change, col_name, col_name_value,
     print(f"Updated {col_to_change} to {new_value} for {col_name} = {col_name_value} in table {table_name}")
 
 # Main function to handle command-line arguments
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Update a specific cell in the database.")
 
     # Required arguments

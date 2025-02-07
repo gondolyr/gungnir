@@ -5,7 +5,7 @@ import subprocess
 DB_NAME = 'styring.db'  # Database name
 CHECK_INTERVAL = 1  # Interval between processing devices in seconds
 
-def update_uxstate(device_id, new_value):
+def update_uxstate(device_id: str, new_value: str) -> None:
     command = [
         'python3', 'updateDBcell.py',
         '--db', DB_NAME,
@@ -21,7 +21,7 @@ def update_uxstate(device_id, new_value):
     else:
         print(f"Updated uxstate for device {device_id} to {new_value}.")
 
-def main():
+def main() -> None:
     while True:
         conn = sqlite3.connect(DB_NAME)
         cursor = conn.cursor()

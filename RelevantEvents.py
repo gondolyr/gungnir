@@ -8,7 +8,7 @@ from datetime import timedelta
 import sys
 import time
 
-def calculate_sunrise_sunset(date, latitude, longitude):
+def calculate_sunrise_sunset(date: datetime.datetime, latitude: float, longitude: float) -> tuple[datetime.datetime, datetime.datetime]:
     """Calculate the sunrise and sunset times for the given date and location."""
     # Constants
     zenith = 90.833  # Official zenith for sunrise/sunset
@@ -61,7 +61,7 @@ def calculate_sunrise_sunset(date, latitude, longitude):
 
     return sunrise_time, sunset_time
 
-def calculate_events(current_time, latitude, longitude, offset):
+def calculate_events(current_time: datetime.datetime, latitude: float, longitude: float, offset: int) -> tuple[tuple[str, datetime.datetime] | None, tuple[str, datetime.datetime] | None, tuple[str, datetime.datetime] | None, str]:
     """Calculate the last event, next event, and the event after."""
     # Collect events over a 3-day window
     events = []
@@ -107,7 +107,7 @@ def calculate_events(current_time, latitude, longitude, offset):
 
     return last_event, next_event, event_after, current_state
 
-def write_to_db(styring_db, device_id, last_event, next_event, current_state):
+def write_to_db(styring_db: str, device_id: str, last_event: tuple[str, datetime.datetime], next_event: tuple[str, datetime.datetime], current_state: str) -> None:
     conn = sqlite3.connect(styring_db)
     cursor = conn.cursor()
 
@@ -137,7 +137,7 @@ def write_to_db(styring_db, device_id, last_event, next_event, current_state):
     finally:
         conn.close()
 
-def get_all_devices(styring_db):
+def get_all_devices(styring_db: str) -> list[dict[str, str]]:
     """Retrieve all devices from the database."""
     conn = sqlite3.connect(styring_db)
     conn.row_factory = sqlite3.Row  # Enable dict-like access
@@ -153,14 +153,14 @@ def get_all_devices(styring_db):
         conn.close()
     return devices
 
-def print_event_str(label, event):
+def print_event_str(label: str, event: tuple[str, datetime.datetime]) -> str:
     """Return the event string instead of printing."""
     if event and event[1]:
         return f'{label}: {event[0]} @ {event[1].strftime("%d%b %H:%M:%S")}'
     else:
         return f'{label}: {event[0] if event else "No event"}'
 
-def process_device(device_info, current_time, args, styring_db):
+def process_device(device_info: dict[str, str], current_time: datetime.datetime, args: argparse.Namespace, styring_db: str) -> list[str]:
     """Process a single device."""
     messages = []
     device_id = device_info['id']
