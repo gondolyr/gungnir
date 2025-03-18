@@ -1,9 +1,10 @@
 import sqlite3
-import time
 import subprocess
+import time
 
-DB_NAME = 'styring.db'  # Database name
+DB_NAME = "styring.db"  # Database name
 CHECK_INTERVAL = 10  # Minimum interval between API requests in seconds
+
 
 # Function to get all devices from the heimtaugaskapar table
 def get_all_devices():
@@ -18,19 +19,17 @@ def get_all_devices():
 
     return [device[0] for device in devices]
 
+
 # Function to call apiState.py for inputstate or outputstate
 def check_state(device_id, var):
-    command = [
-        "python3", "apiState.py",
-        "--id", device_id,
-        "--var", var
-    ]
-    
+    command = ["python3", "apiState.py", "--id", device_id, "--var", var]
+
     result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode != 0:
         print(f"Error checking {var} for device {device_id}: {result.stderr}")
     else:
         print(f"{var} checked for device {device_id}: {result.stdout}")
+
 
 # Function to compare inputstate and outputstate and update localremote
 def update_localremote(device_id):
@@ -38,7 +37,9 @@ def update_localremote(device_id):
     cursor = conn.cursor()
 
     # Get inputstate and outputstate
-    cursor.execute("SELECT inputstate, outputstate FROM heimtaugaskapar WHERE id = ?", (device_id,))
+    cursor.execute(
+        "SELECT inputstate, outputstate FROM heimtaugaskapar WHERE id = ?", (device_id,)
+    )
     row = cursor.fetchone()
 
     if row:
@@ -46,18 +47,22 @@ def update_localremote(device_id):
         outputstate = row[1]
 
         if inputstate != outputstate:
-            localremote = 'LOCAL'
+            localremote = "LOCAL"
         else:
-            localremote = 'REMOTE'
+            localremote = "REMOTE"
 
         # Update localremote
-        cursor.execute("UPDATE heimtaugaskapar SET localremote = ? WHERE id = ?", (localremote, device_id))
+        cursor.execute(
+            "UPDATE heimtaugaskapar SET localremote = ? WHERE id = ?",
+            (localremote, device_id),
+        )
         conn.commit()
         print(f"Updated localremote for device {device_id} to {localremote}")
     else:
         print(f"Device {device_id} not found in database.")
 
     conn.close()
+
 
 # Main loop that checks both inputstate and outputstate for each device
 def main():
@@ -80,5 +85,6 @@ def main():
             # Optional: Uncomment the following line if you want an additional delay
             # time.sleep(CHECK_INTERVAL)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
