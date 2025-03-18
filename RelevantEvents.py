@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# SPDX-FileCopyrightText: 2024 Davíð Berman <davidjberman@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 import argparse
 import datetime
 import math
