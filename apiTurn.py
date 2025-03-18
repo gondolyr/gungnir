@@ -68,17 +68,23 @@ def turn_output(device_info, state):
     pin = device_info["output_pin"]
 
     # Construct the URL with plain-text credentials in the query string
-    url = f"http://{ip}/cgi-bin/io_state?username={USERNAME}&password={PASSWORD}&pin={pin}&state={state.lower()}"
+    url = f"http://{ip}/cgi-bin/io_state"
+    payload = {
+        "username": USERNAME,
+        "password": PASSWORD,
+        "pin": pin,
+        "state": state.lower(),
+    }
 
     # Print the URL without exposing the password
     print(
-        f"API URL: http://{ip}/cgi-bin/io_state?username={USERNAME}&pin={pin}&state={state.lower()} [password hidden]"
+        f"API URL: {url}?username={USERNAME}&pin={pin}&state={state.lower()} [password hidden]"
     )
 
     # Send the request
     for attempt in range(RETRY_LIMIT):
         try:
-            response = requests.get(url, timeout=TIMEOUT)
+            response = requests.get(url, params=payload, timeout=TIMEOUT)
 
             if response.status_code == 200:
                 print(
@@ -109,11 +115,17 @@ def check_and_update_pin_state(device_info, var):
     ip = device_info["ip"]
     pin = device_info["input_pin"] if var == "inputstate" else device_info["output_pin"]
 
-    url = f"http://{ip}/cgi-bin/io_value?username={USERNAME}&password={PASSWORD}&pin={pin}"
+
+    url = f"http://{ip}/cgi-bin/io_value"
+    payload = {
+        "username": USERNAME,
+        "password": PASSWORD,
+        "pin": pin,
+    }
 
     # Send the request
     try:
-        response = requests.get(url, timeout=TIMEOUT)
+        response = requests.get(url, params=payload, timeout=TIMEOUT)
         if response.status_code == 200:
             pin_state = response.text.strip()  # Get the pin state (0 or 1)
             new_value = "ON" if pin_state == "1" else "OFF"
