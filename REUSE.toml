@@ -1,0 +1,14 @@
+# See https://reuse.software/spec/#reusetoml for the specification.
+
+version = 1
+
+# Documentation files.
+[[annotations]]
+path = [
+  "LICENSE.md",
+  "README.md",
+  "api-guide.md",
+  "assets/readme.md",
+]
+SPDX-FileCopyrightText = "2024 Davíð Berman <davidjberman@gmail.com>"
+SPDX-License-Identifier = "AGPL-3.0-or-later"

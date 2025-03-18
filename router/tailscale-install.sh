@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# SPDX-FileCopyrightText: 2024 Davíð Berman <davidjberman@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 if [ -e /usr/sbin/tailscaled ]
 then
     echo "Tailscale already installed, exiting."
@@ -26,6 +30,7 @@ cat << EOF >> /etc/sysupgrade.conf
 /usr/sbin/tailscaled
 EOF
 
+# REUSE-IgnoreStart
 cat << EOF > /etc/init.d/tailscaled
 #!/bin/sh /etc/rc.common
 
@@ -61,6 +66,7 @@ stop_service() {
   /usr/sbin/tailscaled --cleanup
 }
 EOF
+# REUSE-IgnoreEnd
 
 chmod +x /etc/init.d/tailscaled
 
